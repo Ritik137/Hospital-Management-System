@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import com.ritik.authservice.dto.RegisterRequest;
 import com.ritik.authservice.entity.User;
 import com.ritik.authservice.repository.UserRepository;
+import com.ritik.authservice.dto.LoginRequest;
+import java.util.Optional;
 
 @Service
 public class AuthService {
@@ -19,6 +21,7 @@ public class AuthService {
         this.passwordEncoder = passwordEncoder;
     }
 
+//    Register.....
     public String register(RegisterRequest request) {
 
         if (userRepository.existsByEmail(request.getEmail())) {
@@ -36,4 +39,7 @@ public class AuthService {
 
         return "User Registered Successfully";
     }
+    
+//    Login....
+    
 }
