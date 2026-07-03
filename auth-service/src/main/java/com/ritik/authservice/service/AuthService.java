@@ -1,13 +1,14 @@
 package com.ritik.authservice.service;
 
+import java.util.Optional;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.ritik.authservice.dto.LoginRequest;
 import com.ritik.authservice.dto.RegisterRequest;
 import com.ritik.authservice.entity.User;
 import com.ritik.authservice.repository.UserRepository;
-import com.ritik.authservice.dto.LoginRequest;
-import java.util.Optional;
 
 @Service
 public class AuthService {
@@ -41,5 +42,17 @@ public class AuthService {
     }
     
 //    Login....
-    
+    public String login(LoginRequest request) {
+    	Optional<User> optionalUser = userRepository.findByEmail(request.getEmail());
+    	if(optionalUser.isEmpty()) {
+    		return "User not found";
+    	}
+    	
+    	User user = optionalUser.get();
+    	
+    	if(!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+    		return "invalid password";
+    	}
+    	return "Login Successful";
+    }
 }
