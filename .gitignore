@@ -12,14 +12,14 @@
 *.iml
 
 # VS Code
-.vscode/
 
 # Logs
 *.log
 
 # Environment
-.env
 
 # OS
 .DS_Store
 Thumbs.db
+config.bat
+node_modules
